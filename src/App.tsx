@@ -14,6 +14,7 @@ import image11 from "./assets/art/Geometric-Face.png";
 import image12 from "./assets/art/Sam Morris.png";
 
 import { Container, Grid, MantineProvider } from "@mantine/core";
+import { Header } from "./components/Header";
 
 function App() {
   const images = [
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <MantineProvider>
+      <Header />
       <Container my="md">
         <Grid>
           {images.map((image, index) => {
