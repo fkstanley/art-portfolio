@@ -1,6 +1,7 @@
 import { Container, Group, Title } from "@mantine/core";
 import { useState } from "react";
 import classes from "./Header.module.css";
+import { Link } from "react-router-dom";
 
 const pages = [
   { title: "Home", href: "/" },
@@ -13,18 +14,17 @@ export const Header = () => {
   const [active, setActive] = useState(pages[0].href);
 
   const items = pages.map((page) => (
-    <a
+    <Link
       key={page.title}
-      href={page.href}
+      to={page.href}
       className={classes.link}
       data-active={active === page.href || undefined}
-      onClick={(event) => {
-        event.preventDefault();
+      onClick={() => {
         setActive(page.href);
       }}
     >
       {page.title}
-    </a>
+    </Link>
   ));
 
   return (
