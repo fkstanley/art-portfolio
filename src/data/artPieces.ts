@@ -1,15 +1,15 @@
-import venus from "../assets/art/Venus.png";
-import sergei from "../assets/art/Sergei Polunin.png";
-import sam from "../assets/art/Sam Morris.png";
-import pulpFiction from "../assets/art/Pulp Fiction.png";
-import geometricHand from "../assets/art/Geometric-Hand.png";
-import geometricFace from "../assets/art/Geometric-Face.png";
-import eyeBruised from "../assets/art/Eye-Bruised.png";
-import ecstasy from "../assets/art/Ecstasy of St Theresa .png";
-import donnieDarko from "../assets/art/Donnie Darko.png";
-import dirtyDancing from "../assets/art/Dirty-Dancing.png";
-import blindSpots from "../assets/art/Blind Spots.png";
-import aquaria from "../assets/art/Aquaria.png";
+import venus from "../assets/art/webp/Venus.webp";
+import sergei from "../assets/art/webp/Sergei Polunin.webp";
+import sam from "../assets/art/webp/Sam Morris.webp";
+import pulpFiction from "../assets/art/webp/Pulp Fiction.webp";
+import geometricHand from "../assets/art/webp/Geometric-Hand.webp";
+import geometricFace from "../assets/art/webp/Geometric-Face.webp";
+import eyeBruised from "../assets/art/webp/Eye-Bruised.webp";
+import ecstasy from "../assets/art/webp/Ecstasy of St Theresa .webp";
+import donnieDarko from "../assets/art/webp/Donnie Darko.webp";
+import dirtyDancing from "../assets/art/webp/Dirty-Dancing.webp";
+import blindSpots from "../assets/art/webp/Blind Spots.webp";
+import aquaria from "../assets/art/webp/Aquaria.webp";
 
 export interface ArtPiece {
   title: string;

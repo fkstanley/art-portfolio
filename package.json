@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "convert-images": "tsx scripts/convertImages.ts",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -20,10 +21,12 @@
     "embla-carousel-autoplay": "^7.1.0",
     "embla-carousel-react": "^7.1.0",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "sharp": "^0.34.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/node": "^22.14.0",
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.4",
     "@vitejs/plugin-react": "^4.3.4",
@@ -38,6 +41,7 @@
     "postcss-simple-vars": "^7.0.1",
     "prettier": "3.5.3",
     "react-router-dom": "^7.4.0",
+    "tsx": "^4.19.3",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"

@@ -13,6 +13,7 @@ export const Home = () => {
               alt={piece.title}
               radius="md"
               style={{ cursor: "pointer" }}
+              loading="lazy"
             />
           </Grid.Col>
         ))}

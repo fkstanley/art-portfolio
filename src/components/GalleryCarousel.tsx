@@ -47,6 +47,7 @@ export const GalleryCarousel = () => {
                 maxHeight: "100%",
                 objectFit: "contain",
               }}
+              loading="lazy"
             />
           </div>
         </Carousel.Slide>
