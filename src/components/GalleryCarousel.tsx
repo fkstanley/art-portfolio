@@ -2,9 +2,11 @@ import { Carousel } from "@mantine/carousel";
 import { useRef } from "react";
 import "@mantine/carousel/styles.css";
 import { artPieces } from "../data/artPieces";
-
+import classes from "./GalleryCarousel.module.css";
+import Autoplay from "embla-carousel-autoplay";
 export const GalleryCarousel = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const autoplay = useRef(Autoplay({ delay: 5000 }));
 
   return (
     <Carousel
@@ -14,6 +16,17 @@ export const GalleryCarousel = () => {
       withIndicators
       height={600}
       loop
+      align="center"
+      skipSnaps
+      inViewThreshold={0.7}
+      plugins={[autoplay.current]}
+      onMouseEnter={autoplay.current.stop}
+      onMouseLeave={autoplay.current.reset}
+      classNames={{
+        indicator: classes.indicator,
+        root: classes.root,
+        controls: classes.controls,
+      }}
     >
       {artPieces.map((piece, index) => (
         <Carousel.Slide key={index}>

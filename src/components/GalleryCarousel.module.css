@@ -1,0 +1,21 @@
+.indicator {
+  background-color: #0000004b;
+  transition: opacity 150ms ease;
+  opacity: 0;
+}
+
+.controls {
+  transition: opacity 150ms ease;
+  opacity: 0;
+}
+
+.root {
+  &:hover {
+    .controls {
+      opacity: 1;
+    }
+    .indicator {
+      opacity: 1;
+    }
+  }
+}
