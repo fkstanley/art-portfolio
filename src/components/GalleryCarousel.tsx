@@ -7,7 +7,14 @@ export const GalleryCarousel = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   return (
-    <Carousel ref={carouselRef} withIndicators height={600} loop>
+    <Carousel
+      slideSize="50%"
+      slideGap="md"
+      ref={carouselRef}
+      withIndicators
+      height={600}
+      loop
+    >
       {artPieces.map((piece, index) => (
         <Carousel.Slide key={index}>
           <div
