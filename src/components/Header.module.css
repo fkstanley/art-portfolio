@@ -1,5 +1,5 @@
 .header {
-  height: 56px;
+  height: 72px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -9,10 +9,16 @@
 }
 
 .inner {
-  height: 56px;
+  height: 72px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.title {
+  font-family: "Gowun Dodum", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.5px;
 }
 
 .link {
@@ -22,10 +28,24 @@
   border-radius: var(--mantine-radius-sm);
   text-decoration: none;
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
-  font-size: var(--mantine-font-size-sm);
+  font-size: var(--mantine-font-size-md);
   font-weight: 500;
+  font-family: "Gowun Dodum", sans-serif;
+  transition: all 0.2s ease;
 
-  [data-mantine-color-scheme] &[data-active] {
-    font-weight: 1000;
+  &[data-active] {
+    background-color: light-dark(
+      var(--mantine-color-gray-1),
+      var(--mantine-color-dark-6)
+    );
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+    font-weight: 700;
+  }
+
+  &:hover {
+    background-color: light-dark(
+      var(--mantine-color-gray-0),
+      var(--mantine-color-dark-5)
+    );
   }
 }

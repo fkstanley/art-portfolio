@@ -30,7 +30,7 @@ export const Header = () => {
   return (
     <header className={classes.header}>
       <Container className={classes.inner}>
-        <Title>FIONA STANLEY</Title>
+        <Title className={classes.title}>FIONA STANLEY</Title>
         <Group>{items}</Group>
       </Container>
     </header>
