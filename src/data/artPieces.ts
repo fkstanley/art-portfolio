@@ -1,32 +1,150 @@
-import venus from "../assets/art/webp/Venus.webp";
-import sergei from "../assets/art/webp/Sergei Polunin.webp";
-import sam from "../assets/art/webp/Sam Morris.webp";
-import pulpFiction from "../assets/art/webp/Pulp Fiction.webp";
-import geometricHand from "../assets/art/webp/Geometric-Hand.webp";
-import geometricFace from "../assets/art/webp/Geometric-Face.webp";
-import eyeBruised from "../assets/art/webp/Eye-Bruised.webp";
-import ecstasy from "../assets/art/webp/Ecstasy of St Theresa .webp";
-import donnieDarko from "../assets/art/webp/Donnie Darko.webp";
-import dirtyDancing from "../assets/art/webp/Dirty-Dancing.webp";
-import blindSpots from "../assets/art/webp/Blind Spots.webp";
-import aquaria from "../assets/art/webp/Aquaria.webp";
+// Vite requires static imports, this is a little messy but I think the best way to do it
+import {
+  // Small images
+  venusSmall,
+  sergeiSmall,
+  samSmall,
+  pulpFictionSmall,
+  geometricHandSmall,
+  geometricFaceSmall,
+  eyeBruisedSmall,
+  ecstasySmall,
+  donnieDarkoSmall,
+  dirtyDancingSmall,
+  blindSpotsSmall,
+  aquariaSmall,
+  // Medium images
+  venusMedium,
+  sergeiMedium,
+  samMedium,
+  pulpFictionMedium,
+  geometricHandMedium,
+  geometricFaceMedium,
+  eyeBruisedMedium,
+  ecstasyMedium,
+  donnieDarkoMedium,
+  dirtyDancingMedium,
+  blindSpotsMedium,
+  aquariaMedium,
+  // Large images
+  venusLarge,
+  sergeiLarge,
+  samLarge,
+  pulpFictionLarge,
+  geometricHandLarge,
+  geometricFaceLarge,
+  eyeBruisedLarge,
+  ecstasyLarge,
+  donnieDarkoLarge,
+  dirtyDancingLarge,
+  blindSpotsLarge,
+  aquariaLarge,
+} from "../assets/art/webp";
 
 export interface ArtPiece {
   title: string;
-  image: string;
+  image: {
+    small: string;
+    medium: string;
+    large: string;
+  };
 }
 
 export const artPieces: ArtPiece[] = [
-  { title: "Venus", image: venus },
-  { title: "Ecstasy of St Theresa", image: ecstasy },
-  { title: "Sergei Polunin", image: sergei },
-  { title: "Geometric Face", image: geometricFace },
-  { title: "Sam Morris", image: sam },
-  { title: "Pulp Fiction", image: pulpFiction },
-  { title: "Eye Bruised", image: eyeBruised },
-  { title: "Geometric Hand", image: geometricHand },
-  { title: "Donnie Darko", image: donnieDarko },
-  { title: "Dirty Dancing", image: dirtyDancing },
-  { title: "Blind Spots", image: blindSpots },
-  { title: "Aquaria", image: aquaria },
+  {
+    title: "Venus",
+    image: {
+      small: venusSmall,
+      medium: venusMedium,
+      large: venusLarge,
+    },
+  },
+  {
+    title: "Ecstasy of St Theresa",
+    image: {
+      small: ecstasySmall,
+      medium: ecstasyMedium,
+      large: ecstasyLarge,
+    },
+  },
+  {
+    title: "Sergei Polunin",
+    image: {
+      small: sergeiSmall,
+      medium: sergeiMedium,
+      large: sergeiLarge,
+    },
+  },
+  {
+    title: "Geometric Face",
+    image: {
+      small: geometricFaceSmall,
+      medium: geometricFaceMedium,
+      large: geometricFaceLarge,
+    },
+  },
+  {
+    title: "Sam Morris",
+    image: {
+      small: samSmall,
+      medium: samMedium,
+      large: samLarge,
+    },
+  },
+  {
+    title: "Pulp Fiction",
+    image: {
+      small: pulpFictionSmall,
+      medium: pulpFictionMedium,
+      large: pulpFictionLarge,
+    },
+  },
+  {
+    title: "Eye Bruised",
+    image: {
+      small: eyeBruisedSmall,
+      medium: eyeBruisedMedium,
+      large: eyeBruisedLarge,
+    },
+  },
+  {
+    title: "Geometric Hand",
+    image: {
+      small: geometricHandSmall,
+      medium: geometricHandMedium,
+      large: geometricHandLarge,
+    },
+  },
+  {
+    title: "Donnie Darko",
+    image: {
+      small: donnieDarkoSmall,
+      medium: donnieDarkoMedium,
+      large: donnieDarkoLarge,
+    },
+  },
+  {
+    title: "Dirty Dancing",
+    image: {
+      small: dirtyDancingSmall,
+      medium: dirtyDancingMedium,
+      large: dirtyDancingLarge,
+    },
+  },
+  {
+    title: "Blind Spots",
+    image: {
+      small: blindSpotsSmall,
+      medium: blindSpotsMedium,
+      large: blindSpotsLarge,
+    },
+  },
+  {
+    title: "Aquaria",
+    image: {
+      small: aquariaSmall,
+      medium: aquariaMedium,
+      large: aquariaLarge,
+    },
+  },
 ];

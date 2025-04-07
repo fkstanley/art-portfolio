@@ -40,7 +40,13 @@ export const GalleryCarousel = () => {
             }}
           >
             <img
-              src={piece.image}
+              src={piece.image.medium}
+              srcSet={`
+                ${piece.image.small} 400w,
+                ${piece.image.medium} 800w,
+                ${piece.image.large} 1200w
+              `}
+              sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
               alt={piece.title}
               style={{
                 maxWidth: "100%",

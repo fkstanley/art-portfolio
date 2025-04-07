@@ -7,10 +7,19 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const inputDir = join(__dirname, "../src/assets/art/png");
-const outputDir = join(__dirname, "../src/assets/art/webp");
+const outputBaseDir = join(__dirname, "../src/assets/art/webp");
 
-if (!existsSync(outputDir)) {
-  mkdirSync(outputDir, { recursive: true });
+const sizes = [
+  { width: 400, suffix: "small", dir: "small" },
+  { width: 800, suffix: "medium", dir: "medium" },
+  { width: 1200, suffix: "large", dir: "large" },
+];
+
+for (const size of sizes) {
+  const outputDir = join(outputBaseDir, size.dir);
+  if (!existsSync(outputDir)) {
+    mkdirSync(outputDir, { recursive: true });
+  }
 }
 
 const files = readdirSync(inputDir).filter((file) => file.endsWith(".png"));
@@ -18,13 +27,34 @@ const files = readdirSync(inputDir).filter((file) => file.endsWith(".png"));
 async function convertToWebP() {
   for (const file of files) {
     const inputPath = join(inputDir, file);
-    const outputPath = join(outputDir, file.replace(".png", ".webp"));
+    const baseName = file.replace(".png", "");
 
-    try {
-      await sharp(inputPath).webp({ quality: 80 }).toFile(outputPath);
-      console.log(`Converted ${file} to WebP`);
-    } catch (error) {
-      console.error(`Error converting ${file}:`, error);
+    // Maintain aspect ratio
+    const metadata = await sharp(inputPath).metadata();
+    if (!metadata.width || !metadata.height) {
+      console.error(`Could not get dimensions for ${file}`);
+      continue;
+    }
+
+    for (const size of sizes) {
+      const outputDir = join(outputBaseDir, size.dir);
+      const outputPath = join(outputDir, `${baseName}.webp`);
+
+      try {
+        await sharp(inputPath)
+          .resize(size.width, null, {
+            fit: "inside",
+            withoutEnlargement: true,
+          })
+          .webp({ quality: 80 }) // 80% quality, should be hard for an eye to tell the difference
+          .toFile(outputPath);
+
+        console.log(
+          `Converted ${file} to ${size.suffix} WebP (${size.width}px) in ${size.dir} directory`,
+        );
+      } catch (error) {
+        console.error(`Error converting ${file} to ${size.suffix}:`, error);
+      }
     }
   }
 }
