@@ -1,10 +1,10 @@
-import { Container, Text, Title } from "@mantine/core";
+import { Container } from "@mantine/core";
+import { GalleryCarousel } from "../components/GalleryCarousel";
 
 export const Gallery = () => {
   return (
-    <Container size="md">
-      <Title>Gallery</Title>
-      <Text>Coming soon...</Text>
+    <Container size="lg" py="xl">
+      <GalleryCarousel />
     </Container>
   );
 };
