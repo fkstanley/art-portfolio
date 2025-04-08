@@ -1,4 +1,4 @@
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider, createTheme } from "@mantine/core";
 import "./App.css";
 import "@mantine/core/styles.css";
 import { Routes, Route } from "react-router-dom";
@@ -9,9 +9,16 @@ import { About } from "./pages/About";
 import { Gallery } from "./pages/Gallery";
 import { Contact } from "./pages/Contact";
 
+const theme = createTheme({
+  fontFamily: "Gowun Dodum, sans-serif",
+  headings: {
+    fontFamily: "Gowun Dodum, sans-serif",
+  },
+});
+
 function App() {
   return (
-    <MantineProvider>
+    <MantineProvider theme={theme}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
