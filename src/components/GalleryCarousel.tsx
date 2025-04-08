@@ -1,34 +1,81 @@
-import { Carousel } from "@mantine/carousel";
-import { useRef } from "react";
+import { Carousel, Embla } from "@mantine/carousel";
+import { useRef, useEffect, useState } from "react";
 import "@mantine/carousel/styles.css";
-import { artPieces } from "../data/artPieces";
+import { ArtPiece } from "../data/artPieces";
 import classes from "./GalleryCarousel.module.css";
-import Autoplay from "embla-carousel-autoplay";
-export const GalleryCarousel = () => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const autoplay = useRef(Autoplay({ delay: 3000 }));
+
+interface GalleryCarouselProps {
+  artPieces?: ArtPiece[];
+  direction?: "forward" | "backward";
+}
+
+export const GalleryCarousel = ({
+  artPieces,
+  direction = "forward",
+}: GalleryCarouselProps) => {
+  const carouselRef = useRef<Embla | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [autoplay, setAutoplay] = useState(true);
+  const autoplayDelay = 3000;
+
+  // Autoplay
+  useEffect(() => {
+    if (!autoplay) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      return;
+    }
+
+    intervalRef.current = setInterval(() => {
+      if (carouselRef.current) {
+        if (direction === "forward") {
+          carouselRef.current.scrollNext();
+        } else {
+          carouselRef.current.scrollPrev();
+        }
+      }
+    }, autoplayDelay);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [autoplay, direction]);
+
+  const handleMouseEnter = () => {
+    setAutoplay(false);
+  };
+
+  const handleMouseLeave = () => {
+    setAutoplay(true);
+  };
 
   return (
     <Carousel
       slideSize="50%"
       slideGap="md"
-      ref={carouselRef}
+      getEmblaApi={(api) => {
+        carouselRef.current = api;
+        return api;
+      }}
       withIndicators
       height={600}
       loop
       align="center"
       skipSnaps
       inViewThreshold={0.7}
-      plugins={[autoplay.current]}
-      onMouseEnter={autoplay.current.stop}
-      onMouseLeave={autoplay.current.reset}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       classNames={{
         indicator: classes.indicator,
         root: classes.root,
         controls: classes.controls,
       }}
     >
-      {artPieces.map((piece, index) => (
+      {artPieces?.map((piece, index) => (
         <Carousel.Slide key={index}>
           <div
             style={{
