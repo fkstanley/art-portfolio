@@ -11,6 +11,10 @@ export { default as donnieDarkoSmall } from "./small/Donnie Darko.webp";
 export { default as dirtyDancingSmall } from "./small/Dirty-Dancing.webp";
 export { default as blindSpotsSmall } from "./small/Blind Spots.webp";
 export { default as aquariaSmall } from "./small/Aquaria.webp";
+export { default as earSmall } from "./small/ear.webp";
+// export { default as gimpSmall } from "./small/gimp.webp";
+export { default as icarusSmall } from "./small/icarus.webp";
+export { default as liquifiedEyeSmall } from "./small/liquified-eye.webp";
 
 // Medium images
 export { default as venusMedium } from "./medium/Venus.webp";
@@ -25,6 +29,10 @@ export { default as donnieDarkoMedium } from "./medium/Donnie Darko.webp";
 export { default as dirtyDancingMedium } from "./medium/Dirty-Dancing.webp";
 export { default as blindSpotsMedium } from "./medium/Blind Spots.webp";
 export { default as aquariaMedium } from "./medium/Aquaria.webp";
+export { default as earMedium } from "./medium/ear.webp";
+// export { default as gimpMedium } from "./medium/gimp.webp";
+export { default as icarusMedium } from "./medium/icarus.webp";
+export { default as liquifiedEyeMedium } from "./medium/liquified-eye.webp";
 
 // Large images
 export { default as venusLarge } from "./large/Venus.webp";
@@ -39,3 +47,7 @@ export { default as donnieDarkoLarge } from "./large/Donnie Darko.webp";
 export { default as dirtyDancingLarge } from "./large/Dirty-Dancing.webp";
 export { default as blindSpotsLarge } from "./large/Blind Spots.webp";
 export { default as aquariaLarge } from "./large/Aquaria.webp";
+export { default as earLarge } from "./large/ear.webp";
+// export { default as gimpLarge } from "./large/gimp.webp";
+export { default as icarusLarge } from "./large/icarus.webp";
+export { default as liquifiedEyeLarge } from "./large/liquified-eye.webp";

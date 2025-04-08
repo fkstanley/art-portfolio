@@ -13,6 +13,10 @@ import {
   dirtyDancingSmall,
   blindSpotsSmall,
   aquariaSmall,
+  earSmall,
+  // gimpSmall,
+  icarusSmall,
+  liquifiedEyeSmall,
   // Medium images
   venusMedium,
   sergeiMedium,
@@ -26,6 +30,10 @@ import {
   dirtyDancingMedium,
   blindSpotsMedium,
   aquariaMedium,
+  earMedium,
+  // gimpMedium,
+  icarusMedium,
+  liquifiedEyeMedium,
   // Large images
   venusLarge,
   sergeiLarge,
@@ -39,6 +47,10 @@ import {
   dirtyDancingLarge,
   blindSpotsLarge,
   aquariaLarge,
+  earLarge,
+  // gimpLarge,
+  icarusLarge,
+  liquifiedEyeLarge,
 } from "../assets/art/webp";
 
 export interface ArtPiece {
@@ -76,19 +88,11 @@ export const artPieces: ArtPiece[] = [
     },
   },
   {
-    title: "Geometric Face",
+    title: "Ear",
     image: {
-      small: geometricFaceSmall,
-      medium: geometricFaceMedium,
-      large: geometricFaceLarge,
-    },
-  },
-  {
-    title: "Sam Morris",
-    image: {
-      small: samSmall,
-      medium: samMedium,
-      large: samLarge,
+      small: earSmall,
+      medium: earMedium,
+      large: earLarge,
     },
   },
   {
@@ -100,6 +104,14 @@ export const artPieces: ArtPiece[] = [
     },
   },
   {
+    title: "Geometric Face",
+    image: {
+      small: geometricFaceSmall,
+      medium: geometricFaceMedium,
+      large: geometricFaceLarge,
+    },
+  },
+  {
     title: "Eye Bruised",
     image: {
       small: eyeBruisedSmall,
@@ -108,11 +120,27 @@ export const artPieces: ArtPiece[] = [
     },
   },
   {
+    title: "Icarus",
+    image: {
+      small: icarusSmall,
+      medium: icarusMedium,
+      large: icarusLarge,
+    },
+  },
+  {
     title: "Geometric Hand",
     image: {
       small: geometricHandSmall,
       medium: geometricHandMedium,
       large: geometricHandLarge,
+    },
+  },
+  {
+    title: "Liquified Eye",
+    image: {
+      small: liquifiedEyeSmall,
+      medium: liquifiedEyeMedium,
+      large: liquifiedEyeLarge,
     },
   },
   {
@@ -147,4 +175,21 @@ export const artPieces: ArtPiece[] = [
       large: aquariaLarge,
     },
   },
+  {
+    title: "Sam Morris",
+    image: {
+      small: samSmall,
+      medium: samMedium,
+      large: samLarge,
+    },
+  },
+  // Probably want to re-edit this as it's looking quite yellow
+  // {
+  //   title: "Gimp",
+  //   image: {
+  //     small: gimpSmall,
+  //     medium: gimpMedium,
+  //     large: gimpLarge,
+  //   },
+  // },
 ];
