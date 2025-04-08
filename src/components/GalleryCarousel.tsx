@@ -6,7 +6,7 @@ import classes from "./GalleryCarousel.module.css";
 import Autoplay from "embla-carousel-autoplay";
 export const GalleryCarousel = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
-  const autoplay = useRef(Autoplay({ delay: 5000 }));
+  const autoplay = useRef(Autoplay({ delay: 3000 }));
 
   return (
     <Carousel

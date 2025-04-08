@@ -1,11 +1,11 @@
 import "@mantine/core/styles.css";
 import { Container } from "@mantine/core";
-import { ArtGrid } from "../components/ArtGrid";
+import { GalleryCarousel } from "../components/GalleryCarousel";
 
 export const Home = () => {
   return (
-    <Container my="md">
-      <ArtGrid />
+    <Container size="lg" py="xl">
+      <GalleryCarousel />
     </Container>
   );
 };
