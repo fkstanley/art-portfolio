@@ -1,3 +1,33 @@
+.root {
+  /* Phones */
+  height: 400px;
+
+  /* Tablets */
+  @media (min-width: 768px) {
+    height: 500px;
+  }
+
+  /* Desktops */
+  @media (min-width: 992px) {
+    height: 600px;
+  }
+}
+
+.slideContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 .indicator {
   background-color: #0000004b;
   transition: opacity 150ms ease;

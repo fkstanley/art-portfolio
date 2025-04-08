@@ -9,7 +9,7 @@ export const Home = () => {
   const secondHalf = artPieces.slice(midpoint);
 
   return (
-    <Container size="lg" py="xl">
+    <Container size="lg">
       <Stack>
         <GalleryCarousel direction="backward" artPieces={firstHalf} />
         <GalleryCarousel direction="forward" artPieces={secondHalf} />

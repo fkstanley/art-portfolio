@@ -55,14 +55,14 @@ export const GalleryCarousel = ({
 
   return (
     <Carousel
-      slideSize="50%"
-      slideGap="md"
+      slideSize={{ base: "100%", sm: "50%" }}
+      slideGap={{ base: "sm", sm: "md" }}
       getEmblaApi={(api) => {
         carouselRef.current = api;
         return api;
       }}
       withIndicators
-      height={600}
+      height="100%"
       loop
       align="center"
       skipSnaps
@@ -77,15 +77,7 @@ export const GalleryCarousel = ({
     >
       {artPieces?.map((piece, index) => (
         <Carousel.Slide key={index}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              height: "100%",
-              justifyContent: "center",
-            }}
-          >
+          <div className={classes.slideContent}>
             <img
               src={piece.image.medium}
               srcSet={`
@@ -95,11 +87,7 @@ export const GalleryCarousel = ({
               `}
               sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
               alt={piece.title}
-              style={{
-                maxWidth: "100%",
-                maxHeight: "100%",
-                objectFit: "contain",
-              }}
+              className={classes.image}
               loading="lazy"
             />
           </div>
