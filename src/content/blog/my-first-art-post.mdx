@@ -1,0 +1,40 @@
+import { artPieces } from "../../data/artPieces";
+import { Center, Image } from "@mantine/core";
+
+export const meta = {
+  title: "Test blog post",
+  date: "March 20, 2024",
+  description: "Test blog post",
+};
+
+<Center>
+  <Image
+    src={artPieces.find((piece) => piece.title === "Aquaria")?.image.medium}
+    radius="md"
+    w="50%"
+  />
+</Center>
+
+## The Creative Process
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+### Finding Inspiration
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur:
+
+- Excepteur sint occaecat cupidatat non proident
+- Sunt in culpa qui officia deserunt mollit anim id est laborum
+- Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+- Accusantium doloremque laudantium, totam rem aperiam
+
+## Working with Different Mediums
+
+Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo:
+
+1. Nemo enim ipsam voluptatem quia voluptas
+2. Sit aspernatur aut odit aut fugit
+3. Sed quia consequuntur magni dolores eos qui ratione
+4. Voluptatem sequi nesciunt
+
+Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit!
