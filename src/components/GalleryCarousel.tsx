@@ -16,7 +16,7 @@ export const GalleryCarousel = ({
   const carouselRef = useRef<Embla | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [autoplay, setAutoplay] = useState(true);
-  const autoplayDelay = 3000;
+  const autoplayDelay = 6000;
 
   // Autoplay
   useEffect(() => {
