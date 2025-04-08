@@ -18,6 +18,32 @@
 .title {
   font-weight: 900;
   letter-spacing: 0.5px;
+  font-size: 2.5rem;
+  white-space: nowrap;
+  margin: 0;
+  line-height: 1;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.links {
+  display: flex;
+  gap: var(--mantine-spacing-md);
+  align-items: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.burger {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 }
 
 .link {
@@ -30,6 +56,7 @@
   font-size: var(--mantine-font-size-md);
   font-weight: 500;
   transition: all 0.2s ease;
+  white-space: nowrap;
 
   &[data-active] {
     background-color: light-dark(
