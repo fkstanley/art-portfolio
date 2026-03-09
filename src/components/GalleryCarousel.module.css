@@ -11,6 +11,15 @@
   @media (min-width: 992px) {
     height: 600px;
   }
+
+  &:hover {
+    .controls {
+      opacity: 1;
+    }
+    .indicator {
+      opacity: 1;
+    }
+  }
 }
 
 .slideContent {
@@ -37,15 +46,4 @@
 .controls {
   transition: opacity 150ms ease;
   opacity: 0;
-}
-
-.root {
-  &:hover {
-    .controls {
-      opacity: 1;
-    }
-    .indicator {
-      opacity: 1;
-    }
-  }
 }

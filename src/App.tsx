@@ -1,5 +1,4 @@
 import { MantineProvider, createTheme } from "@mantine/core";
-import "./App.css";
 import "@mantine/core/styles.css";
 import { Routes, Route } from "react-router-dom";
 
@@ -16,7 +15,7 @@ const theme = createTheme({
   },
 });
 
-function App() {
+export const App = () => {
   return (
     <MantineProvider theme={theme}>
       <Routes>
@@ -30,6 +29,4 @@ function App() {
       </Routes>
     </MantineProvider>
   );
-}
-
-export default App;
+};

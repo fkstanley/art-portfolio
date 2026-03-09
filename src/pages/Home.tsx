@@ -1,4 +1,3 @@
-import "@mantine/core/styles.css";
 import { Container, Stack } from "@mantine/core";
 import { GalleryCarousel } from "../components/GalleryCarousel";
 import { artPieces } from "../data/artPieces";

@@ -1,11 +1,12 @@
 import { Carousel, Embla } from "@mantine/carousel";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import "@mantine/carousel/styles.css";
 import { ArtPiece } from "../data/artPieces";
+import { useAutoplay } from "../hooks/useAutoplay";
 import classes from "./GalleryCarousel.module.css";
 
 interface GalleryCarouselProps {
-  artPieces?: ArtPiece[];
+  artPieces: ArtPiece[];
   direction?: "forward" | "backward";
 }
 
@@ -14,44 +15,10 @@ export const GalleryCarousel = ({
   direction = "forward",
 }: GalleryCarouselProps) => {
   const carouselRef = useRef<Embla | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const [autoplay, setAutoplay] = useState(true);
-  const autoplayDelay = 6000;
-
-  // Autoplay
-  useEffect(() => {
-    if (!autoplay) {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-      return;
-    }
-
-    intervalRef.current = setInterval(() => {
-      if (carouselRef.current) {
-        if (direction === "forward") {
-          carouselRef.current.scrollNext();
-        } else {
-          carouselRef.current.scrollPrev();
-        }
-      }
-    }, autoplayDelay);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [autoplay, direction]);
-
-  const handleMouseEnter = () => {
-    setAutoplay(false);
-  };
-
-  const handleMouseLeave = () => {
-    setAutoplay(true);
-  };
+  const { onMouseEnter, onMouseLeave } = useAutoplay(
+    carouselRef.current,
+    direction,
+  );
 
   return (
     <Carousel
@@ -67,16 +34,16 @@ export const GalleryCarousel = ({
       align="center"
       skipSnaps
       inViewThreshold={0.7}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       classNames={{
         indicator: classes.indicator,
         root: classes.root,
         controls: classes.controls,
       }}
     >
-      {artPieces?.map((piece, index) => (
-        <Carousel.Slide key={index}>
+      {artPieces.map((piece) => (
+        <Carousel.Slide key={piece.title}>
           <div className={classes.slideContent}>
             <img
               src={piece.image.medium}
