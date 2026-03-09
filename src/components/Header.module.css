@@ -8,6 +8,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .logo {
@@ -28,6 +31,7 @@
 .links {
   display: flex;
   align-items: center;
+  gap: 0.25rem;
 
   @media (max-width: 768px) {
     display: none;

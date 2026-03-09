@@ -1,4 +1,3 @@
-import { Box } from "@mantine/core";
 import { useState, useEffect, useRef } from "react";
 import { ImageModal } from "./ImageModal";
 import { ArtPiece } from "../data/artPieces";
@@ -36,7 +35,7 @@ export const ArtGrid = ({ artPieces }: ArtGridProps) => {
   }, []);
 
   return (
-    <Box>
+    <>
       <ImageModal
         opened={!!selectedPiece}
         onClose={() => setSelectedPiece(null)}
@@ -64,6 +63,6 @@ export const ArtGrid = ({ artPieces }: ArtGridProps) => {
           </div>
         ))}
       </div>
-    </Box>
+    </>
   );
 };

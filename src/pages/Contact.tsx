@@ -1,9 +1,14 @@
-import { Container, Text } from "@mantine/core";
-
 export const Contact = () => {
   return (
-    <Container size="sm" py={80} ta="center">
-      <Text
+    <div
+      style={{
+        maxWidth: 720,
+        margin: "0 auto",
+        padding: "80px 1rem",
+        textAlign: "center",
+      }}
+    >
+      <p
         style={{
           fontFamily: "var(--font-display)",
           fontStyle: "italic",
@@ -11,10 +16,11 @@ export const Contact = () => {
           fontWeight: 300,
           color: "var(--text-secondary)",
           letterSpacing: "0.02em",
+          margin: 0,
         }}
       >
         Coming soon...
-      </Text>
-    </Container>
+      </p>
+    </div>
   );
 };

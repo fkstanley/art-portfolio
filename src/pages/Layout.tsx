@@ -1,28 +1,23 @@
-import { AppShell } from "@mantine/core";
 import { Header } from "../components/Header";
 import { Outlet } from "react-router-dom";
 
 export const Layout = () => {
   return (
-    <AppShell
-      header={{ height: 64 }}
-      padding={0}
-      styles={{
-        root: { backgroundColor: "var(--bg-primary)" },
-        main: { backgroundColor: "var(--bg-primary)" },
-      }}
-    >
-      <AppShell.Header
+    <div>
+      <header
         style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
           backgroundColor: "var(--bg-primary)",
           borderBottom: "1px solid var(--border-subtle)",
         }}
       >
         <Header />
-      </AppShell.Header>
-      <AppShell.Main>
+      </header>
+      <main>
         <Outlet />
-      </AppShell.Main>
-    </AppShell>
+      </main>
+    </div>
   );
 };

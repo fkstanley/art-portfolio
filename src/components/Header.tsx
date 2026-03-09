@@ -1,7 +1,8 @@
-import { Container, Group, Burger, Drawer, Stack } from "@mantine/core";
+import { useState } from "react";
 import classes from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
-import { useDisclosure } from "@mantine/hooks";
+import { Burger } from "./Burger";
+import { Drawer } from "./Drawer";
 
 const pages = [
   { title: "Work", href: "/" },
@@ -12,7 +13,10 @@ const pages = [
 
 export const Header = () => {
   const location = useLocation();
-  const [opened, { toggle, close }] = useDisclosure(false);
+  const [opened, setOpened] = useState(false);
+
+  const toggle = () => setOpened((o) => !o);
+  const close = () => setOpened(false);
 
   const items = pages.map((page) => (
     <Link
@@ -28,38 +32,18 @@ export const Header = () => {
 
   return (
     <header className={classes.header}>
-      <Container size="xl" className={classes.inner}>
+      <div className={classes.inner}>
         <Link to="/" className={classes.logo}>
           Fiona Stanley
         </Link>
-        <Group className={classes.links} gap="xs">
-          {items}
-        </Group>
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          className={classes.burger}
-          size="sm"
-          color="var(--text-muted)"
-        />
-      </Container>
+        <div className={classes.links}>{items}</div>
+        <div className={classes.burger}>
+          <Burger opened={opened} onClick={toggle} />
+        </div>
+      </div>
 
-      <Drawer
-        opened={opened}
-        onClose={close}
-        size="100%"
-        padding="xl"
-        hiddenFrom="sm"
-        zIndex={1000}
-        styles={{
-          header: { backgroundColor: "var(--bg-elevated)" },
-          body: { backgroundColor: "var(--bg-elevated)" },
-          content: { backgroundColor: "var(--bg-elevated)" },
-        }}
-      >
-        <Stack gap="lg" pt="xl">
-          {items}
-        </Stack>
+      <Drawer opened={opened} onClose={close}>
+        {items}
       </Drawer>
     </header>
   );
