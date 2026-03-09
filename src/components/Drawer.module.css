@@ -48,15 +48,6 @@
   padding-top: 3rem;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @keyframes slideIn {
   from {
     transform: translateX(100%);

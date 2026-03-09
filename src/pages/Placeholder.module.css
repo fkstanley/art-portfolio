@@ -1,0 +1,13 @@
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 1rem;
+  text-align: center;
+}
+
+.text {
+  composes: display-title from global;
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  margin: 0;
+}

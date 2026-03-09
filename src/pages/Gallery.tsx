@@ -1,9 +1,10 @@
 import { ArtGrid } from "../components/ArtGrid";
 import { artPieces } from "../data/artPieces";
+import styles from "./Gallery.module.css";
 
 export const Gallery = () => {
   return (
-    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "2rem 1rem" }}>
+    <div className={styles.page}>
       <ArtGrid artPieces={artPieces} />
     </div>
   );
