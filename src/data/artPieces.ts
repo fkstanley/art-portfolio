@@ -1,57 +1,14 @@
-// Vite requires static imports, this is a little messy but I think the best way to do it
-import {
-  // Small images
-  venusSmall,
-  sergeiSmall,
-  samSmall,
-  pulpFictionSmall,
-  geometricHandSmall,
-  geometricFaceSmall,
-  eyeBruisedSmall,
-  ecstasySmall,
-  donnieDarkoSmall,
-  dirtyDancingSmall,
-  blindSpotsSmall,
-  aquariaSmall,
-  earSmall,
-  // gimpSmall,
-  icarusSmall,
-  liquifiedEyeSmall,
-  // Medium images
-  venusMedium,
-  sergeiMedium,
-  samMedium,
-  pulpFictionMedium,
-  geometricHandMedium,
-  geometricFaceMedium,
-  eyeBruisedMedium,
-  ecstasyMedium,
-  donnieDarkoMedium,
-  dirtyDancingMedium,
-  blindSpotsMedium,
-  aquariaMedium,
-  earMedium,
-  // gimpMedium,
-  icarusMedium,
-  liquifiedEyeMedium,
-  // Large images
-  venusLarge,
-  sergeiLarge,
-  samLarge,
-  pulpFictionLarge,
-  geometricHandLarge,
-  geometricFaceLarge,
-  eyeBruisedLarge,
-  ecstasyLarge,
-  donnieDarkoLarge,
-  dirtyDancingLarge,
-  blindSpotsLarge,
-  aquariaLarge,
-  earLarge,
-  // gimpLarge,
-  icarusLarge,
-  liquifiedEyeLarge,
-} from "../assets/art/webp";
+const images = import.meta.glob<{ default: string }>(
+  "../assets/art/webp/**/*.webp",
+  { eager: true },
+);
+
+function resolve(size: string, filename: string): string {
+  const key = `../assets/art/webp/${size}/${filename}.webp`;
+  const mod = images[key];
+  if (!mod) throw new Error(`Missing image: ${key}`);
+  return mod.default;
+}
 
 export interface ArtPiece {
   title: string;
@@ -62,134 +19,31 @@ export interface ArtPiece {
   };
 }
 
+function piece(title: string, filename: string): ArtPiece {
+  return {
+    title,
+    image: {
+      small: resolve("small", filename),
+      medium: resolve("medium", filename),
+      large: resolve("large", filename),
+    },
+  };
+}
+
 export const artPieces: ArtPiece[] = [
-  {
-    title: "Venus",
-    image: {
-      small: venusSmall,
-      medium: venusMedium,
-      large: venusLarge,
-    },
-  },
-  {
-    title: "Ecstasy of St Theresa",
-    image: {
-      small: ecstasySmall,
-      medium: ecstasyMedium,
-      large: ecstasyLarge,
-    },
-  },
-  {
-    title: "Sergei Polunin",
-    image: {
-      small: sergeiSmall,
-      medium: sergeiMedium,
-      large: sergeiLarge,
-    },
-  },
-  {
-    title: "Ear",
-    image: {
-      small: earSmall,
-      medium: earMedium,
-      large: earLarge,
-    },
-  },
-  {
-    title: "Pulp Fiction",
-    image: {
-      small: pulpFictionSmall,
-      medium: pulpFictionMedium,
-      large: pulpFictionLarge,
-    },
-  },
-  {
-    title: "Geometric Face",
-    image: {
-      small: geometricFaceSmall,
-      medium: geometricFaceMedium,
-      large: geometricFaceLarge,
-    },
-  },
-  {
-    title: "Eye Bruised",
-    image: {
-      small: eyeBruisedSmall,
-      medium: eyeBruisedMedium,
-      large: eyeBruisedLarge,
-    },
-  },
-  {
-    title: "Icarus",
-    image: {
-      small: icarusSmall,
-      medium: icarusMedium,
-      large: icarusLarge,
-    },
-  },
-  {
-    title: "Geometric Hand",
-    image: {
-      small: geometricHandSmall,
-      medium: geometricHandMedium,
-      large: geometricHandLarge,
-    },
-  },
-  {
-    title: "Liquified Eye",
-    image: {
-      small: liquifiedEyeSmall,
-      medium: liquifiedEyeMedium,
-      large: liquifiedEyeLarge,
-    },
-  },
-  {
-    title: "Donnie Darko",
-    image: {
-      small: donnieDarkoSmall,
-      medium: donnieDarkoMedium,
-      large: donnieDarkoLarge,
-    },
-  },
-  {
-    title: "Dirty Dancing",
-    image: {
-      small: dirtyDancingSmall,
-      medium: dirtyDancingMedium,
-      large: dirtyDancingLarge,
-    },
-  },
-  {
-    title: "Blind Spots",
-    image: {
-      small: blindSpotsSmall,
-      medium: blindSpotsMedium,
-      large: blindSpotsLarge,
-    },
-  },
-  {
-    title: "Aquaria",
-    image: {
-      small: aquariaSmall,
-      medium: aquariaMedium,
-      large: aquariaLarge,
-    },
-  },
-  {
-    title: "Sam Morris",
-    image: {
-      small: samSmall,
-      medium: samMedium,
-      large: samLarge,
-    },
-  },
-  // Probably want to re-edit this as it's looking quite yellow
-  // {
-  //   title: "Gimp",
-  //   image: {
-  //     small: gimpSmall,
-  //     medium: gimpMedium,
-  //     large: gimpLarge,
-  //   },
-  // },
+  piece("Venus", "Venus"),
+  piece("Ecstasy of St Theresa", "Ecstasy of St Theresa "),
+  piece("Sergei Polunin", "Sergei Polunin"),
+  piece("Ear", "ear"),
+  piece("Pulp Fiction", "Pulp Fiction"),
+  piece("Geometric Face", "Geometric-Face"),
+  piece("Eye Bruised", "Eye-Bruised"),
+  piece("Icarus", "icarus"),
+  piece("Geometric Hand", "Geometric-Hand"),
+  piece("Liquified Eye", "liquified-eye"),
+  piece("Donnie Darko", "Donnie Darko"),
+  piece("Dirty Dancing", "Dirty-Dancing"),
+  piece("Blind Spots", "Blind Spots"),
+  piece("Aquaria", "Aquaria"),
+  piece("Sam Morris", "Sam Morris"),
 ];
