@@ -1,20 +1,12 @@
-import {
-  Container,
-  Group,
-  Title,
-  Burger,
-  Drawer,
-  Stack,
-  Text,
-} from "@mantine/core";
+import { Container, Group, Burger, Drawer, Stack } from "@mantine/core";
 import classes from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { useDisclosure } from "@mantine/hooks";
 
 const pages = [
-  { title: "Home", href: "/" },
-  { title: "About", href: "/about" },
+  { title: "Work", href: "/" },
   { title: "Gallery", href: "/gallery" },
+  { title: "About", href: "/about" },
   { title: "Contact", href: "/contact" },
 ];
 
@@ -37,13 +29,18 @@ export const Header = () => {
   return (
     <header className={classes.header}>
       <Container size="xl" className={classes.inner}>
-        <Title className={classes.title}>FIONA STANLEY</Title>
-        <Group className={classes.links}>{items}</Group>
+        <Link to="/" className={classes.logo}>
+          Fiona Stanley
+        </Link>
+        <Group className={classes.links} gap="xs">
+          {items}
+        </Group>
         <Burger
           opened={opened}
           onClick={toggle}
           className={classes.burger}
           size="sm"
+          color="var(--text-muted)"
         />
       </Container>
 
@@ -51,12 +48,18 @@ export const Header = () => {
         opened={opened}
         onClose={close}
         size="100%"
-        padding="md"
-        title={<Text fw={700}>Menu</Text>}
+        padding="xl"
         hiddenFrom="sm"
         zIndex={1000}
+        styles={{
+          header: { backgroundColor: "var(--bg-elevated)" },
+          body: { backgroundColor: "var(--bg-elevated)" },
+          content: { backgroundColor: "var(--bg-elevated)" },
+        }}
       >
-        <Stack gap="md">{items}</Stack>
+        <Stack gap="lg" pt="xl">
+          {items}
+        </Stack>
       </Drawer>
     </header>
   );

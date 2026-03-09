@@ -1,36 +1,32 @@
 .header {
-  height: 72px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: var(--mantine-color-body);
-  border-bottom: 1px solid
-    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  height: 64px;
+  background-color: transparent;
 }
 
 .inner {
-  height: 72px;
+  height: 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.title {
-  font-weight: 900;
-  letter-spacing: 0.5px;
-  font-size: 2.5rem;
-  white-space: nowrap;
-  margin: 0;
-  line-height: 1;
+.logo {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
 
-  @media (max-width: 768px) {
-    font-size: 2rem;
+  &:hover {
+    color: var(--accent);
   }
 }
 
 .links {
   display: flex;
-  gap: var(--mantine-spacing-md);
   align-items: center;
 
   @media (max-width: 768px) {
@@ -48,29 +44,37 @@
 
 .link {
   display: block;
-  line-height: 1;
-  padding: 8px 12px;
-  border-radius: var(--mantine-radius-sm);
+  padding: 6px 16px;
   text-decoration: none;
-  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
-  font-size: var(--mantine-font-size-md);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
   font-weight: 500;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
 
   &[data-active] {
-    background-color: light-dark(
-      var(--mantine-color-gray-1),
-      var(--mantine-color-dark-6)
-    );
-    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
-    font-weight: 700;
+    color: var(--text-primary);
+
+    &::after {
+      transform: scaleX(1);
+    }
   }
 
   &:hover {
-    background-color: light-dark(
-      var(--mantine-color-gray-0),
-      var(--mantine-color-dark-5)
-    );
+    color: var(--text-primary);
   }
 }

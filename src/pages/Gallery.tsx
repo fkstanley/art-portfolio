@@ -4,7 +4,7 @@ import { artPieces } from "../data/artPieces";
 
 export const Gallery = () => {
   return (
-    <Container my="md">
+    <Container size="lg" py="xl">
       <ArtGrid artPieces={artPieces} />
     </Container>
   );

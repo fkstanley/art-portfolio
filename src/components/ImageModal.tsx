@@ -1,4 +1,4 @@
-import { Modal, Image } from "@mantine/core";
+import { Modal } from "@mantine/core";
 import { IconX } from "@tabler/icons-react";
 import { ArtPiece } from "../data/artPieces";
 import styles from "./ImageModal.module.css";
@@ -16,17 +16,32 @@ export const ImageModal = ({ opened, onClose, artPiece }: ImageModalProps) => {
     <Modal
       opened={opened}
       onClose={onClose}
-      centered
+      fullScreen
       padding={0}
-      size="xl"
-      closeButtonProps={{
-        icon: <IconX size={20} stroke={1.5} />,
-      }}
+      withCloseButton={false}
       classNames={{
-        header: styles.header,
+        content: styles.content,
+        body: styles.body,
       }}
+      transitionProps={{ transition: "fade", duration: 300 }}
     >
-      <Image src={artPiece.image.large} alt={artPiece.title} />
+      <button
+        className={styles.closeButton}
+        onClick={onClose}
+        aria-label="Close"
+      >
+        <IconX size={20} stroke={1.5} />
+      </button>
+      <div className={styles.imageContainer}>
+        <img
+          src={artPiece.image.large}
+          alt={artPiece.title}
+          className={styles.image}
+        />
+      </div>
+      <div className={styles.titleBar}>
+        <span className={styles.title}>{artPiece.title}</span>
+      </div>
     </Modal>
   );
 };
