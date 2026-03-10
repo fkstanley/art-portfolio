@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { IconChevronUp, IconChevronDown } from "@tabler/icons-react";
 import { ArtPiece } from "../data/artPieces";
 import classes from "./HeroSlideshow.module.css";
 
@@ -137,6 +138,13 @@ export const HeroSlideshow = ({
       </div>
 
       <div className={classes.indicators}>
+        <button
+          className={classes.arrow}
+          onClick={() => goToSlide(activeIndex - 1, "backward")}
+          aria-label="Previous slide"
+        >
+          <IconChevronUp size={16} stroke={1.5} />
+        </button>
         {artPieces.map((_, i) => (
           <button
             key={i}
@@ -146,6 +154,13 @@ export const HeroSlideshow = ({
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}
+        <button
+          className={classes.arrow}
+          onClick={() => goToSlide(activeIndex + 1, "forward")}
+          aria-label="Next slide"
+        >
+          <IconChevronDown size={16} stroke={1.5} />
+        </button>
       </div>
 
       <div className={classes.progressBar}>

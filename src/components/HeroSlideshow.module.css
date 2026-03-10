@@ -147,11 +147,36 @@
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
 
   @media (max-width: 768px) {
     right: 0.75rem;
     gap: 6px;
+  }
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--text-muted);
+  opacity: 0.6;
+  transition:
+    opacity 0.4s var(--ease-out-smooth),
+    color 0.4s var(--ease-out-smooth);
+
+  &:hover {
+    opacity: 1;
+    color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    padding: 2px;
   }
 }
 
