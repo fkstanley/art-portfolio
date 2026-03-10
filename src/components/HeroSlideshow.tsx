@@ -74,17 +74,6 @@ export const HeroSlideshow = ({
       ))}
 
       <div className={classes.info}>
-        <span className={classes.title} key={activeIndex}>
-          {artPieces[activeIndex].title.split("").map((char, i) => (
-            <span
-              key={i}
-              className={classes.titleChar}
-              style={{ animationDelay: `${i * 35 + 300}ms` }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </span>
-          ))}
-        </span>
         <span className={classes.counter} key={`c-${activeIndex}`}>
           {String(activeIndex + 1).padStart(2, "0")} /{" "}
           {String(artPieces.length).padStart(2, "0")}

@@ -76,9 +76,6 @@ export const ArtGrid = ({ artPieces }: ArtGridProps) => {
                 loading="lazy"
                 className={classes.image}
               />
-              <div className={classes.overlay}>
-                <span className={classes.pieceTitle}>{piece.title}</span>
-              </div>
             </div>
           </div>
         ))}

@@ -48,9 +48,6 @@ export const ImageModal = ({ opened, onClose, artPiece }: ImageModalProps) => {
           onClick={(e) => e.stopPropagation()}
         />
       </div>
-      <div className={styles.titleBar} onClick={(e) => e.stopPropagation()}>
-        <span className={styles.title}>{artPiece.title}</span>
-      </div>
     </div>,
     document.body,
   );
