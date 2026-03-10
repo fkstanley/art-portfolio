@@ -9,8 +9,8 @@
   }
 
   @media (max-width: 576px) {
-    column-count: 1;
-    column-gap: 0;
+    column-count: 2;
+    column-gap: 0.75rem;
     padding: 1rem 0;
   }
 }
