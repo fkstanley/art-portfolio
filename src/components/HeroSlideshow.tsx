@@ -70,56 +70,9 @@ export const HeroSlideshow = ({
     return () => clearInterval(timer);
   }, [isPaused, activeIndex, goToSlide, interval]);
 
-  // Scroll wheel navigation
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
-
-    const onWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      if (isTransitioning.current) return;
-
-      if (e.deltaY > 0) {
-        goToSlide(activeIndex + 1, "forward");
-      } else if (e.deltaY < 0) {
-        goToSlide(activeIndex - 1, "backward");
-      }
-    };
-
-    hero.addEventListener("wheel", onWheel, { passive: false });
-    return () => hero.removeEventListener("wheel", onWheel);
-  }, [activeIndex, goToSlide]);
-
-  // Touch/swipe navigation
-  const touchStartY = useRef<number | null>(null);
-
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
-
-    const onTouchStart = (e: TouchEvent) => {
-      touchStartY.current = e.touches[0].clientY;
-    };
-
-    const onTouchEnd = (e: TouchEvent) => {
-      if (touchStartY.current === null || isTransitioning.current) return;
-      const deltaY = touchStartY.current - e.changedTouches[0].clientY;
-      touchStartY.current = null;
-
-      if (deltaY > 50) {
-        goToSlide(activeIndex + 1, "forward");
-      } else if (deltaY < -50) {
-        goToSlide(activeIndex - 1, "backward");
-      }
-    };
-
-    hero.addEventListener("touchstart", onTouchStart, { passive: true });
-    hero.addEventListener("touchend", onTouchEnd, { passive: true });
-    return () => {
-      hero.removeEventListener("touchstart", onTouchStart);
-      hero.removeEventListener("touchend", onTouchEnd);
-    };
-  }, [activeIndex, goToSlide]);
+  const scrollPastHero = () => {
+    window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+  };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const hero = heroRef.current;
@@ -204,6 +157,19 @@ export const HeroSlideshow = ({
           />
         ))}
       </div>
+
+      <button
+        className={classes.scrollHint}
+        onClick={scrollPastHero}
+        aria-label="Scroll to gallery"
+      >
+        <span className={classes.scrollHintText}>Explore all works</span>
+        <IconChevronDown
+          size={14}
+          stroke={1.5}
+          className={classes.scrollHintChevron}
+        />
+      </button>
 
       <div className={classes.progressBar}>
         <div

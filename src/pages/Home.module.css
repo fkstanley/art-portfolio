@@ -1,0 +1,46 @@
+/* Bridging section between hero and gallery */
+.transition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 5rem 1rem 3rem;
+  background: linear-gradient(var(--bg-primary), var(--bg-secondary));
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.8s var(--ease-out-expo),
+    transform 0.8s var(--ease-out-expo);
+
+  &[data-visible] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rule {
+  width: 60px;
+  height: 1px;
+  background-color: var(--accent);
+}
+
+.sectionHeading {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+
+/* Gallery grid section */
+.gridSection {
+  background-color: var(--bg-secondary);
+  padding: 0 1rem 2rem;
+}
+
+.gridInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
