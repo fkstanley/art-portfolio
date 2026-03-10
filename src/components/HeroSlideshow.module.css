@@ -144,24 +144,11 @@
   }
 }
 
-/* Slide indicators */
-.indicators {
+/* Arrow buttons (shared base) */
+.arrowUp,
+.arrowDown {
   position: absolute;
   right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-
-  @media (max-width: 768px) {
-    right: 0.75rem;
-    gap: 6px;
-  }
-}
-
-.arrow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,14 +161,61 @@
   transition:
     opacity 0.4s var(--ease-out-smooth),
     color 0.4s var(--ease-out-smooth);
+  z-index: 2;
 
   &:hover {
     opacity: 1;
     color: var(--accent);
   }
+}
+
+.arrowUp {
+  top: calc(50% - 60px);
+}
+
+.arrowDown {
+  top: calc(50% + 44px);
+}
+
+@media (max-width: 768px) {
+  .arrowUp,
+  .arrowDown {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px;
+    opacity: 0.45;
+  }
+
+  .arrowUp {
+    top: 5rem;
+  }
+
+  .arrowDown {
+    top: auto;
+    bottom: 3.5rem;
+  }
+
+  .arrowUp svg,
+  .arrowDown svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Slide indicators (dots) */
+.indicators {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 
   @media (max-width: 768px) {
-    padding: 2px;
+    display: none;
   }
 }
 

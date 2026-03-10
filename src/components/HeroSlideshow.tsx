@@ -90,6 +90,37 @@ export const HeroSlideshow = ({
     return () => hero.removeEventListener("wheel", onWheel);
   }, [activeIndex, goToSlide]);
 
+  // Touch/swipe navigation
+  const touchStartY = useRef<number | null>(null);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY.current = e.touches[0].clientY;
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (touchStartY.current === null || isTransitioning.current) return;
+      const deltaY = touchStartY.current - e.changedTouches[0].clientY;
+      touchStartY.current = null;
+
+      if (deltaY > 50) {
+        goToSlide(activeIndex + 1, "forward");
+      } else if (deltaY < -50) {
+        goToSlide(activeIndex - 1, "backward");
+      }
+    };
+
+    hero.addEventListener("touchstart", onTouchStart, { passive: true });
+    hero.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      hero.removeEventListener("touchstart", onTouchStart);
+      hero.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [activeIndex, goToSlide]);
+
   const handleMouseMove = (e: React.MouseEvent) => {
     const hero = heroRef.current;
     if (!hero) return;
@@ -147,14 +178,22 @@ export const HeroSlideshow = ({
         </span>
       </div>
 
+      <button
+        className={classes.arrowUp}
+        onClick={() => goToSlide(activeIndex - 1, "backward")}
+        aria-label="Previous slide"
+      >
+        <IconChevronUp size={16} stroke={1.5} />
+      </button>
+      <button
+        className={classes.arrowDown}
+        onClick={() => goToSlide(activeIndex + 1, "forward")}
+        aria-label="Next slide"
+      >
+        <IconChevronDown size={16} stroke={1.5} />
+      </button>
+
       <div className={classes.indicators}>
-        <button
-          className={classes.arrow}
-          onClick={() => goToSlide(activeIndex - 1, "backward")}
-          aria-label="Previous slide"
-        >
-          <IconChevronUp size={16} stroke={1.5} />
-        </button>
         {artPieces.map((_, i) => (
           <button
             key={i}
@@ -164,13 +203,6 @@ export const HeroSlideshow = ({
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}
-        <button
-          className={classes.arrow}
-          onClick={() => goToSlide(activeIndex + 1, "forward")}
-          aria-label="Next slide"
-        >
-          <IconChevronDown size={16} stroke={1.5} />
-        </button>
       </div>
 
       <div className={classes.progressBar}>
