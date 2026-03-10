@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Generated WebP images (produced by convert-images script)
+src/assets/art/webp/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

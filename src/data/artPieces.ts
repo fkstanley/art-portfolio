@@ -19,31 +19,23 @@ export interface ArtPiece {
   };
 }
 
-function piece(title: string, filename: string): ArtPiece {
-  return {
+// Derive pieces automatically from the small/ directory glob keys
+const filenamePattern = /\/small\/(\d{2})-(.+)\.webp$/;
+
+export const artPieces: ArtPiece[] = Object.keys(images)
+  .map((key) => filenamePattern.exec(key))
+  .filter((match): match is RegExpExecArray => match !== null)
+  .map(([, order, slug]) => ({
+    order: parseInt(order, 10),
+    slug: `${order}-${slug}`,
+    title: slug.split("-").join(" "),
+  }))
+  .sort((a, b) => a.order - b.order)
+  .map(({ title, slug }) => ({
     title,
     image: {
-      small: resolve("small", filename),
-      medium: resolve("medium", filename),
-      large: resolve("large", filename),
+      small: resolve("small", slug),
+      medium: resolve("medium", slug),
+      large: resolve("large", slug),
     },
-  };
-}
-
-export const artPieces: ArtPiece[] = [
-  piece("Venus", "Venus"),
-  piece("Ecstasy of St Theresa", "Ecstasy of St Theresa "),
-  piece("Sergei Polunin", "Sergei Polunin"),
-  piece("Ear", "ear"),
-  piece("Pulp Fiction", "Pulp Fiction"),
-  piece("Geometric Face", "Geometric-Face"),
-  piece("Eye Bruised", "Eye-Bruised"),
-  piece("Icarus", "icarus"),
-  piece("Geometric Hand", "Geometric-Hand"),
-  piece("Liquified Eye", "liquified-eye"),
-  piece("Donnie Darko", "Donnie Darko"),
-  piece("Dirty Dancing", "Dirty-Dancing"),
-  piece("Blind Spots", "Blind Spots"),
-  piece("Aquaria", "Aquaria"),
-  piece("Sam Morris", "Sam Morris"),
-];
+  }));

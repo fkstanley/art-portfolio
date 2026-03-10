@@ -35,7 +35,7 @@ React 18 + TypeScript + Vite SPA deployed to GitHub Pages at `/art-portfolio/`.
 
 **Styling:** CSS Modules for component-scoped styles, global CSS variables in `index.css`. No CSS framework — pure CSS. Fonts: Cormorant Garamond (display) and Karla (body) via Google Fonts. Responsive breakpoints at 992px and 576px.
 
-**Image pipeline:** Source PNGs live in `src/assets/art/png/`. The `convert-images` script produces WebP at 400px, 800px, and 1200px widths into `src/assets/art/webp/{small,medium,large}/`. Components use responsive `srcSet` for these sizes. Images are resolved dynamically via `import.meta.glob` in `src/data/artPieces.ts`.
+**Image pipeline:** Source PNGs live in `src/assets/art/png/` and must follow the naming convention `NN-Title-Words.png` (e.g. `05-Pulp-Fiction.png`). The numeric prefix controls display order; the title is derived by splitting the slug on hyphens. The `convert-images` script (chained into `dev` and `build`) cleans `src/assets/art/webp/`, validates filenames, and produces WebP at 400px, 800px, and 1200px widths into `{small,medium,large}/`. Generated WebPs are `.gitignore`d. `src/data/artPieces.ts` auto-derives the `ArtPiece[]` array from the glob — no manual registration needed. To add artwork: name the PNG with the convention, drop it in `src/assets/art/png/`, and push.
 
 **State:** No state management library — React hooks and local component state only.
 
