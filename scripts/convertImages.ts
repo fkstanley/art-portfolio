@@ -9,8 +9,7 @@ const __dirname = dirname(__filename);
 const inputDir = join(__dirname, "../src/assets/art/png");
 const outputBaseDir = join(__dirname, "../src/assets/art/webp");
 
-const FILENAME_PATTERN =
-  /^\d{2}-[A-Za-z][A-Za-z0-9]*(-[A-Za-z][A-Za-z0-9]*)*\.png$/;
+const FILENAME_PATTERN = /^[A-Za-z][A-Za-z0-9]*(-[A-Za-z][A-Za-z0-9]*)*\.png$/;
 
 const sizes = [
   { width: 400, dir: "small" },
@@ -33,7 +32,7 @@ const files = readdirSync(inputDir).filter((file) => file.endsWith(".png"));
 const invalid = files.filter((file) => !FILENAME_PATTERN.test(file));
 if (invalid.length > 0) {
   console.error(
-    "PNGs must match NN-Title-Words.png (e.g. 01-Venus.png). Invalid files:",
+    "PNGs must match Title-Words.png (e.g. Venus.png). Invalid files:",
   );
   for (const file of invalid) {
     console.error(`  ${file}`);

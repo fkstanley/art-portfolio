@@ -19,23 +19,35 @@ export interface ArtPiece {
   };
 }
 
-// Derive pieces automatically from the small/ directory glob keys
-const filenamePattern = /\/small\/(\d{2})-(.+)\.webp$/;
+// Display order — reorder by moving lines, add new pieces anywhere
+const order = [
+  "Life-Portrait-Shoko",
+  "Curled-Up-Figure-Painting",
+  "Venus",
+  "Self-Portrait",
+  "Ecstasy-of-St-Theresa",
+  "Sergei-Polunin",
+  "Monochrome-Portrait",
+  "Ear",
+  "Pulp-Fiction",
+  "Geometric-Face",
+  "Eye-Bruised",
+  "Icarus",
+  "Geometric-Hand",
+  "Liquified-Eye",
+  "Donnie-Darko",
+  "Dirty-Dancing",
+  "Blind-Spots",
+  "Aquaria",
+  "Sam-Morris",
+  "Palette-Knife-Painting",
+];
 
-export const artPieces: ArtPiece[] = Object.keys(images)
-  .map((key) => filenamePattern.exec(key))
-  .filter((match): match is RegExpExecArray => match !== null)
-  .map(([, order, slug]) => ({
-    order: parseInt(order, 10),
-    slug: `${order}-${slug}`,
-    title: slug.split("-").join(" "),
-  }))
-  .sort((a, b) => a.order - b.order)
-  .map(({ title, slug }) => ({
-    title,
-    image: {
-      small: resolve("small", slug),
-      medium: resolve("medium", slug),
-      large: resolve("large", slug),
-    },
-  }));
+export const artPieces: ArtPiece[] = order.map((slug) => ({
+  title: slug.split("-").join(" "),
+  image: {
+    small: resolve("small", slug),
+    medium: resolve("medium", slug),
+    large: resolve("large", slug),
+  },
+}));

@@ -35,7 +35,7 @@ React 18 + TypeScript + Vite SPA deployed to GitHub Pages at `/art-portfolio/`.
 
 **Styling:** CSS Modules for component-scoped styles, global CSS variables in `index.css`. No CSS framework — pure CSS. Fonts: Cormorant Garamond (display) and Karla (body) via Google Fonts. Responsive breakpoints at 992px and 576px.
 
-**Image pipeline:** Source PNGs live in `src/assets/art/png/` and must follow the naming convention `NN-Title-Words.png` (e.g. `05-Pulp-Fiction.png`). The numeric prefix controls display order; the title is derived by splitting the slug on hyphens. The `convert-images` script (chained into `dev` and `build`) cleans `src/assets/art/webp/`, validates filenames, and produces WebP at 400px, 800px, and 1200px widths into `{small,medium,large}/`. Generated WebPs are `.gitignore`d. `src/data/artPieces.ts` auto-derives the `ArtPiece[]` array from the glob — no manual registration needed. To add artwork: name the PNG with the convention, drop it in `src/assets/art/png/`, and push.
+**Image pipeline:** Source PNGs live in `src/assets/art/png/` and must follow the naming convention `Title-Words.png` (e.g. `Pulp-Fiction.png`). The `convert-images` script (chained into `dev` and `build`) cleans `src/assets/art/webp/`, validates filenames, and produces WebP at 400px, 800px, and 1200px widths into `{small,medium,large}/`. Generated WebPs are `.gitignore`d. Display order is controlled by the `order` array in `src/data/artPieces.ts` — reorder by moving lines. To add artwork: name the PNG with the convention, drop it in `src/assets/art/png/`, add the slug to the `order` array, and push.
 
 **State:** No state management library — React hooks and local component state only.
 
