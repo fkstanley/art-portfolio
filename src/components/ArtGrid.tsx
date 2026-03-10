@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ImageModal } from "./ImageModal";
 import { ArtPiece } from "../data/artPieces";
 import classes from "./ArtGrid.module.css";
@@ -34,6 +34,24 @@ export const ArtGrid = ({ artPieces }: ArtGridProps) => {
     return () => observer.disconnect();
   }, []);
 
+  const handleTiltMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const wrapper = e.currentTarget.querySelector(
+      `.${classes.imageWrapper}`,
+    ) as HTMLElement | null;
+    if (!wrapper) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    wrapper.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+  }, []);
+
+  const handleTiltLeave = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const wrapper = e.currentTarget.querySelector(
+      `.${classes.imageWrapper}`,
+    ) as HTMLElement | null;
+    if (wrapper) wrapper.style.transform = "";
+  }, []);
+
   return (
     <>
       <ImageModal
@@ -48,6 +66,8 @@ export const ArtGrid = ({ artPieces }: ArtGridProps) => {
             className={classes.item}
             style={{ animationDelay: `${(i % 3) * 120}ms` }}
             onClick={() => setSelectedPiece(piece)}
+            onMouseMove={handleTiltMove}
+            onMouseLeave={handleTiltLeave}
           >
             <div className={classes.imageWrapper}>
               <img

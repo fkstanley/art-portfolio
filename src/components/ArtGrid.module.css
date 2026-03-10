@@ -1,7 +1,8 @@
 .masonry {
   column-count: 3;
-  column-gap: 1rem;
+  column-gap: 1.25rem;
   padding: 2rem 0;
+  animation: pageEnter 0.7s var(--ease-out-expo) both;
 
   @media (max-width: 992px) {
     column-count: 2;
@@ -16,13 +17,13 @@
 
 .item {
   break-inside: avoid;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   cursor: pointer;
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(30px);
   transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+    opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
 
   &[data-visible] {
     opacity: 1;
@@ -37,12 +38,16 @@
 .imageWrapper {
   position: relative;
   overflow: hidden;
+  border-radius: 2px;
+  transition: transform 0.5s var(--ease-out-smooth);
+  will-change: transform;
+  transform-style: preserve-3d;
 }
 
 .image {
   width: 100%;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.7s var(--ease-out-smooth);
 }
 
 .overlay {
@@ -50,26 +55,27 @@
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(10, 10, 10, 0.7) 0%,
-    transparent 50%
+    rgba(10, 10, 10, 0.75) 0%,
+    rgba(10, 10, 10, 0.1) 40%,
+    transparent 60%
   );
   display: flex;
   align-items: flex-end;
   padding: 1.5rem;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s var(--ease-out-smooth);
 }
 
 .pieceTitle {
   composes: display-title from global;
-  font-size: 1.1rem;
-  color: var(--text-primary);
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.9);
   transform: translateY(8px);
-  transition: transform 0.4s ease;
+  transition: transform 0.5s var(--ease-out-expo);
 }
 
 .imageWrapper:hover .image {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .imageWrapper:hover .overlay {

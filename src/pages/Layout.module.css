@@ -1,7 +1,11 @@
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  background-color: var(--bg-primary);
-  border-bottom: 1px solid var(--border-subtle);
+  background-color: rgba(248, 246, 242, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }

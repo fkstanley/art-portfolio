@@ -7,29 +7,48 @@
 .backdrop {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  animation: fadeIn 0.2s ease;
+  background-color: rgba(10, 10, 10, 0.6);
+  animation: backdropIn 0.4s var(--ease-out-expo);
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .panel {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: var(--bg-elevated);
-  padding: 1.5rem;
-  animation: slideIn 0.3s ease;
+  inset: 0;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: panelIn 0.5s var(--ease-out-expo);
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .close {
   position: absolute;
-  top: 1rem;
+  top: 1.25rem;
   right: 1rem;
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   padding: 0.25rem;
   display: flex;
   align-items: center;
@@ -41,18 +60,51 @@
   }
 }
 
-.body {
+.nav {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding-top: 3rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-@keyframes slideIn {
+/* Override header link styles when inside drawer */
+.nav a {
+  font-family: var(--font-display) !important;
+  font-size: 2.4rem !important;
+  font-style: italic !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: none !important;
+  padding: 0.3rem 1rem !important;
+  opacity: 0;
+  animation: linkIn 0.6s var(--ease-out-expo) forwards;
+}
+
+.nav a:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.nav a:nth-child(2) {
+  animation-delay: 0.17s;
+}
+.nav a:nth-child(3) {
+  animation-delay: 0.24s;
+}
+.nav a:nth-child(4) {
+  animation-delay: 0.31s;
+}
+
+/* Remove the underline pseudo-element in drawer context */
+.nav a::after {
+  display: none !important;
+}
+
+@keyframes linkIn {
   from {
-    transform: translateX(100%);
+    opacity: 0;
+    transform: translateY(16px);
   }
   to {
-    transform: translateX(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }

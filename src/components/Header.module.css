@@ -21,7 +21,7 @@
   letter-spacing: 0.02em;
   color: var(--text-primary);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.4s var(--ease-out-smooth);
 
   &:hover {
     color: var(--accent);
@@ -55,7 +55,7 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  transition: color 0.3s ease;
+  transition: color 0.4s var(--ease-out-smooth);
   position: relative;
 
   &::after {
@@ -67,7 +67,8 @@
     height: 1px;
     background-color: var(--accent);
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-out-expo);
   }
 
   &[data-active] {
@@ -80,5 +81,9 @@
 
   &:hover {
     color: var(--text-primary);
+
+    &::after {
+      transform: scaleX(1);
+    }
   }
 }

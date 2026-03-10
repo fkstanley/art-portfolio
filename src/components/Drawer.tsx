@@ -32,9 +32,9 @@ export const Drawer = ({ opened, onClose, children }: DrawerProps) => {
       <div className={classes.backdrop} onClick={onClose} />
       <div className={classes.panel}>
         <button className={classes.close} onClick={onClose} aria-label="Close">
-          <IconX size={20} stroke={1.5} />
+          <IconX size={22} stroke={1.5} />
         </button>
-        <div className={classes.body}>{children}</div>
+        <nav className={classes.nav}>{children}</nav>
       </div>
     </div>,
     document.body,
