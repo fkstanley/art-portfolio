@@ -131,22 +131,14 @@ export const HeroSlideshow = ({
         </span>
       </div>
 
-      <button
-        className={classes.arrowUp}
-        onClick={() => goToSlide(activeIndex - 1, "backward")}
-        aria-label="Previous slide"
-      >
-        <IconChevronUp size={16} stroke={1.5} />
-      </button>
-      <button
-        className={classes.arrowDown}
-        onClick={() => goToSlide(activeIndex + 1, "forward")}
-        aria-label="Next slide"
-      >
-        <IconChevronDown size={16} stroke={1.5} />
-      </button>
-
       <div className={classes.indicators}>
+        <button
+          className={classes.arrowUp}
+          onClick={() => goToSlide(activeIndex - 1, "backward")}
+          aria-label="Previous slide"
+        >
+          <IconChevronUp size={16} stroke={1.5} />
+        </button>
         {artPieces.map((_, i) => (
           <button
             key={i}
@@ -156,6 +148,13 @@ export const HeroSlideshow = ({
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}
+        <button
+          className={classes.arrowDown}
+          onClick={() => goToSlide(activeIndex + 1, "forward")}
+          aria-label="Next slide"
+        >
+          <IconChevronDown size={16} stroke={1.5} />
+        </button>
       </div>
 
       <button
