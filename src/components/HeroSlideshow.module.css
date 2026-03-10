@@ -16,9 +16,6 @@
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition:
-    opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 6rem 6rem 5.5rem;
 
   @media (max-width: 768px) {
@@ -26,13 +23,21 @@
   }
 }
 
-/* Inactive slides parked off-screen in the entry direction */
+/* Inactive slides parked off-screen — no transition so they snap instantly */
 .hero[data-direction="forward"] .slide {
   transform: translateY(30%);
 }
 
 .hero[data-direction="backward"] .slide {
   transform: translateY(-30%);
+}
+
+/* Active and exiting slides get the transition */
+.slide[data-active],
+.slide[data-exiting] {
+  transition:
+    opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Active slide: centred and visible */

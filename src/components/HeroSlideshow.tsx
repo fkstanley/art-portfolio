@@ -29,25 +29,35 @@ export const HeroSlideshow = ({
 
       const len = artPieces.length;
       const wrapped = ((target % len) + len) % len;
+      if (wrapped === activeIndex) return;
 
-      setActiveIndex((prev) => {
-        if (wrapped === prev) return prev;
+      const dir =
+        forceDirection ?? (wrapped > activeIndex ? "forward" : "backward");
 
-        const dir = forceDirection ?? (wrapped > prev ? "forward" : "backward");
+      isTransitioning.current = true;
 
-        setDirection(dir);
-        setExitingIndex(prev);
-        isTransitioning.current = true;
-
+      const commitTransition = () => {
+        setExitingIndex(activeIndex);
+        setActiveIndex(wrapped);
         setTimeout(() => {
           setExitingIndex(null);
           isTransitioning.current = false;
         }, TRANSITION_MS);
+      };
 
-        return wrapped;
-      });
+      if (dir !== direction) {
+        // Direction is changing — set it first so inactive slides snap to
+        // their new parking positions, then wait two frames before starting
+        // the transition so the browser has painted the new positions.
+        setDirection(dir);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(commitTransition);
+        });
+      } else {
+        commitTransition();
+      }
     },
-    [artPieces.length],
+    [artPieces.length, activeIndex, direction],
   );
 
   // Auto-advance
