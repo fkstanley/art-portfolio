@@ -7,23 +7,77 @@ interface HeroSlideshowProps {
   interval?: number;
 }
 
+const TRANSITION_MS = 1400;
+
+type Direction = "forward" | "backward";
+
 export const HeroSlideshow = ({
   artPieces,
   interval = 5000,
 }: HeroSlideshowProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [exitingIndex, setExitingIndex] = useState<number | null>(null);
+  const [direction, setDirection] = useState<Direction>("forward");
   const [isPaused, setIsPaused] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+  const isTransitioning = useRef(false);
 
-  const advance = useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % artPieces.length);
-  }, [artPieces.length]);
+  const goToSlide = useCallback(
+    (target: number, forceDirection?: Direction) => {
+      if (isTransitioning.current) return;
 
+      const len = artPieces.length;
+      const wrapped = ((target % len) + len) % len;
+
+      setActiveIndex((prev) => {
+        if (wrapped === prev) return prev;
+
+        const dir = forceDirection ?? (wrapped > prev ? "forward" : "backward");
+
+        setDirection(dir);
+        setExitingIndex(prev);
+        isTransitioning.current = true;
+
+        setTimeout(() => {
+          setExitingIndex(null);
+          isTransitioning.current = false;
+        }, TRANSITION_MS);
+
+        return wrapped;
+      });
+    },
+    [artPieces.length],
+  );
+
+  // Auto-advance
   useEffect(() => {
     if (isPaused) return;
-    const timer = setInterval(advance, interval);
+    const timer = setInterval(
+      () => goToSlide(activeIndex + 1, "forward"),
+      interval,
+    );
     return () => clearInterval(timer);
-  }, [isPaused, advance, interval]);
+  }, [isPaused, activeIndex, goToSlide, interval]);
+
+  // Scroll wheel navigation
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (isTransitioning.current) return;
+
+      if (e.deltaY > 0) {
+        goToSlide(activeIndex + 1, "forward");
+      } else if (e.deltaY < 0) {
+        goToSlide(activeIndex - 1, "backward");
+      }
+    };
+
+    hero.addEventListener("wheel", onWheel, { passive: false });
+    return () => hero.removeEventListener("wheel", onWheel);
+  }, [activeIndex, goToSlide]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const hero = heroRef.current;
@@ -47,6 +101,7 @@ export const HeroSlideshow = ({
     <div
       ref={heroRef}
       className={classes.hero}
+      data-direction={direction}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={handleMouseLeave}
@@ -56,6 +111,7 @@ export const HeroSlideshow = ({
           key={piece.title}
           className={classes.slide}
           data-active={i === activeIndex || undefined}
+          data-exiting={i === exitingIndex || undefined}
         >
           <div className={classes.imageWrapper}>
             <img
@@ -86,7 +142,7 @@ export const HeroSlideshow = ({
             key={i}
             className={classes.dot}
             data-active={i === activeIndex || undefined}
-            onClick={() => setActiveIndex(i)}
+            onClick={() => goToSlide(i)}
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}
