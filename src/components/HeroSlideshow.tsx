@@ -89,7 +89,6 @@ export const HeroSlideshow = ({
     if (!hero) return;
     hero.style.setProperty("--parallax-x", "0px");
     hero.style.setProperty("--parallax-y", "0px");
-    setIsPaused(false);
   };
 
   return (
@@ -98,7 +97,6 @@ export const HeroSlideshow = ({
       className={classes.hero}
       data-direction={direction}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={handleMouseLeave}
     >
       {artPieces.map((piece, i) => (
@@ -108,7 +106,11 @@ export const HeroSlideshow = ({
           data-active={i === activeIndex || undefined}
           data-exiting={i === exitingIndex || undefined}
         >
-          <div className={classes.imageWrapper}>
+          <div
+            className={classes.imageWrapper}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             <img
               src={piece.image.large}
               srcSet={`
